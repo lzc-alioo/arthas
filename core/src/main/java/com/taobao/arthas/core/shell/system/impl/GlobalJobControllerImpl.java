@@ -1,20 +1,19 @@
 package com.taobao.arthas.core.shell.system.impl;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
-
 import com.alibaba.arthas.deps.org.slf4j.Logger;
 import com.alibaba.arthas.deps.org.slf4j.LoggerFactory;
 import com.taobao.arthas.core.GlobalOptions;
+import com.taobao.arthas.core.distribution.ResultDistributor;
 import com.taobao.arthas.core.server.ArthasBootstrap;
 import com.taobao.arthas.core.shell.cli.CliToken;
 import com.taobao.arthas.core.shell.handlers.Handler;
-import com.taobao.arthas.core.shell.impl.ShellImpl;
+import com.taobao.arthas.core.shell.session.Session;
 import com.taobao.arthas.core.shell.system.Job;
+import com.taobao.arthas.core.shell.system.JobListener;
+import com.taobao.arthas.core.shell.term.Term;
+
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 全局的Job Controller，不应该存在启停的概念，不需要在连接的断开时关闭，
@@ -50,8 +49,8 @@ public class GlobalJobControllerImpl extends JobControllerImpl {
     }
 
     @Override
-    public Job createJob(InternalCommandManager commandManager, List<CliToken> tokens, ShellImpl shell) {
-        final Job job = super.createJob(commandManager, tokens, shell);
+    public Job createJob(InternalCommandManager commandManager, List<CliToken> tokens, Session session, JobListener jobHandler, Term term, ResultDistributor resultDistributor) {
+        final Job job = super.createJob(commandManager, tokens, session, jobHandler, term, resultDistributor);
 
         /*
          * 达到超时时间将会停止job
