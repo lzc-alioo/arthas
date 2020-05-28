@@ -104,6 +104,10 @@ public class Arthas {
             configure.setArthasCore(encodeArg(configure.getArthasCore()));
             virtualMachine.loadAgent(arthasAgentPath,
                     configure.getArthasCore() + ";" + configure.toString());
+
+            System.out.println("alioolog as.sh arthasAgentPath:"+arthasAgentPath);
+            System.out.println("alioolog as.sh options:"+configure.getArthasCore()+ ";" + configure.toString());
+
         } finally {
             if (null != virtualMachine) {
                 virtualMachine.detach();

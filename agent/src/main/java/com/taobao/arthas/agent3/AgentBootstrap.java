@@ -8,6 +8,7 @@ import java.lang.instrument.Instrumentation;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.security.CodeSource;
+import java.util.Date;
 import java.util.jar.JarFile;
 
 import com.taobao.arthas.agent.ArthasClassloader;
@@ -104,7 +105,11 @@ public class AgentBootstrap {
             if (args == null) {
                 args = "";
             }
+            //ps.println("alioolog arthas.log args:"+args);
+
             args = decodeArg(args);
+
+            ps.println("alioolog arthas.log args decode:"+args);
 
             String arthasCoreJar;
             final String agentArgs;
@@ -163,7 +168,10 @@ public class AgentBootstrap {
 
             bindingThread.setName("arthas-binding-thread");
             bindingThread.start();
+            ps.println("alioolog arthas.log bindingThread.start:"+new Date());
             bindingThread.join();
+            ps.println("alioolog arthas.log bindingThread.join:"+new Date());
+
         } catch (Throwable t) {
             t.printStackTrace(ps);
             try {
@@ -186,6 +194,10 @@ public class AgentBootstrap {
         Class<?> bootstrapClass = agentLoader.loadClass(ARTHAS_BOOTSTRAP);
         Object bootstrap = bootstrapClass.getMethod(GET_INSTANCE, Instrumentation.class, String.class).invoke(null, inst, args);
         boolean isBind = (Boolean) bootstrapClass.getMethod(IS_BIND).invoke(bootstrap);
+
+        ps.println("alioolog arthas.log isBind:"+isBind);
+
+
         if (!isBind) {
             try {
                 ps.println("Arthas start to bind...");

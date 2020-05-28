@@ -728,6 +728,19 @@ attach_jvm()
         tempArgs+=("${STAT_URL}")
     fi
 
+    echo "alilog as.sh java cmd:"
+    echo "${java_command[@]}" \
+        ${ARTHAS_OPTS} ${JVM_OPTS} \
+        -jar "${arthas_lib_dir}/arthas-core.jar" \
+            -pid ${TARGET_PID} \
+            -target-ip ${TARGET_IP} \
+            -telnet-port ${TELNET_PORT} \
+            -http-port ${HTTP_PORT} \
+            -session-timeout ${SESSION_TIMEOUT} \
+            "${tempArgs[@]}" \
+            -core "${arthas_lib_dir}/arthas-core.jar" \
+            -agent "${arthas_lib_dir}/arthas-agent.jar"
+
     "${java_command[@]}" \
         ${ARTHAS_OPTS} ${JVM_OPTS} \
         -jar "${arthas_lib_dir}/arthas-core.jar" \

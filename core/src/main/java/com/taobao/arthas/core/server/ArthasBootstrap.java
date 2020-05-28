@@ -88,6 +88,9 @@ public class ArthasBootstrap {
         arthasOutputDir = new File(outputPath);
         arthasOutputDir.mkdirs();
 
+        System.out.println("alioolog targetapp outputPath:"+outputPath);
+        System.out.println("alioolog targetapp arthasOutputDir:"+arthasOutputDir.getAbsolutePath());
+
         // 1. initSpy()
         initSpy();
         // 2. ArthasEnvironment
@@ -150,6 +153,9 @@ public class ArthasBootstrap {
 
         configure = new Configure();
         BinderUtils.inject(arthasEnvironment, configure);
+
+        System.out.println("alioolog targetapp configure:"+configure.toString());
+
     }
 
     private String arthasHome() {
@@ -347,6 +353,7 @@ public class ArthasBootstrap {
      * @throws Throwable
      */
     public synchronized static ArthasBootstrap getInstance(Instrumentation instrumentation, String args) throws Throwable {
+        System.out.println("alioolog targetapp arthasBootstrap:"+arthasBootstrap);
         if (arthasBootstrap == null) {
             arthasBootstrap = new ArthasBootstrap(instrumentation, args);
         }
