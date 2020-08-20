@@ -1,7 +1,7 @@
 Arthas Documentation
 ===
 
-**[中文文档/Chinese Documentation](https://alibaba.github.io/arthas/)**
+**[中文文档/Chinese Documentation](https://arthas.aliyun.com/doc/)**
 
 ![](arthas.png)
 
@@ -39,7 +39,8 @@ Arthas is built to solve these issues. A developer can troubleshoot production i
 Contents
 --------
 
-* [Online tutorials(Recommend)](https://alibaba.github.io/arthas/arthas-tutorials?language=en)
+* [Home](https://arthas.aliyun.com/)
+* [Online tutorials(Recommend)](https://arthas.aliyun.com/doc/arthas-tutorials.html?language=en)
 * [Installation](install-detail.md)
 * [Download](download.md)
 * [Quick start](quick-start.md)
@@ -49,6 +50,7 @@ Contents
 * [Http API](http-api.md)
 * [Docker](docker.md)
 * [Arthas Spring Boot Starter](spring-boot-starter.md)
+* [IDEA Plugin](idea-plugin.md)
 * [User cases](https://github.com/alibaba/arthas/issues?q=label%3Auser-case)
 * [Questions and answers](https://github.com/alibaba/arthas/issues?q=label%3Aquestion-answered)
 * [Fork me at GitHub](https://github.com/alibaba/arthas)
